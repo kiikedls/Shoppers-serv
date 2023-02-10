@@ -16,3 +16,25 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+$router->get('/prueba',function() use ($router){
+    return 'pudrete flanders';
+});
+
+$router->group(['prefix'=>'api'], function() use ($router){
+    $router->get('/users', 'UserController@index');
+    //$router->post('/users', 'UserController@store');
+    //rutas para las categorias
+    $router->get('/', 'CategoriesController@index');
+    $router->post('/', 'CategoriesController@store');
+    $router->get('/{id}', 'CategoriesController@show');
+    $router->put('/{id}', 'CategoriesController@update');
+    $router->delete('/{id}', 'CategoriesController@destroy');
+
+    //rutas de los items
+    $router->post('/{id}/items','ItemsController@store');
+    $router->get('/{id}/items','ItemsController@index');
+    $router->get('/{id}/items/{item_id}','ItemsController@show');
+    $router->put('/{id}/items/{item_id}','ItemsController@update');
+    $router->delete('/{id}/items/{item_id}','ItemsController@destroy');
+});
