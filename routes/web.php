@@ -25,11 +25,11 @@ $router->group(['prefix'=>'api'], function() use ($router){
     $router->get('/users', 'UserController@index');
     //$router->post('/users', 'UserController@store');
     //rutas para las categorias
-    $router->get('/', 'CategoriesController@index');
-    $router->post('/', 'CategoriesController@store');
-    $router->get('/{id}', 'CategoriesController@show');
-    $router->put('/{id}', 'CategoriesController@update');
-    $router->delete('/{id}', 'CategoriesController@destroy');
+    $router->get('/', 'CategoryController@index');
+    $router->post('/', 'CategoryController@store');
+    $router->get('/{id}', 'CategoryController@show');
+    $router->put('/{id}', 'CategoryController@update');
+    $router->delete('/{id}', 'CategoryController@destroy');
 
     //rutas de los items
     $router->post('/{id}/items','ItemsController@store');
