@@ -21,8 +21,28 @@ $router->get('/prueba',function() use ($router){
     return 'pudrete flanders';
 });
 
+
+
+
+
 $router->group(['prefix'=>'api'], function() use ($router){
-    $router->get('/users', 'UserController@index');
+    //ruta para iniciar sesion
+    $router->post('/login','AuthController@login');
+    //ruta para probar registrar nuevo usuario
+    $router->post('/register','AuthController@register');
+
+    //grupo de rutas para probar que funciona la autorizacion de passport
+    $router->group(['middleware'=>'auth'],function () use ($router)
+    {
+        //ruta para cerrar sesion
+        $router->post('/logout','AuthController@logout');
+
+        $router->get('/users', 'UserController@index');
+    });
+
+
+
+
     //$router->post('/users', 'UserController@store');
     //rutas para las categorias
     $router->get('/', 'CategoryController@index');
