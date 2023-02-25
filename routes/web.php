@@ -21,10 +21,6 @@ $router->get('/prueba',function() use ($router){
     return 'pudrete flanders';
 });
 
-
-
-
-
 $router->group(['prefix'=>'api'], function() use ($router){
     //ruta para iniciar sesion
     $router->post('/login','AuthController@login');
@@ -36,8 +32,15 @@ $router->group(['prefix'=>'api'], function() use ($router){
     {
         //ruta para cerrar sesion
         $router->post('/logout','AuthController@logout');
-
+        //listado de todos los usuarios
         $router->get('/users', 'UserController@index');
+
+        $router->get('/', 'CategoryController@index');
+        $router->get('/{id}', 'CategoryController@show');
+        $router->post('/', 'CategoryController@store');
+        $router->put('/{id}', 'CategoryController@update');
+        $router->delete('/{id}', 'CategoryController@destroy');
+
     });
 
 
@@ -45,11 +48,6 @@ $router->group(['prefix'=>'api'], function() use ($router){
 
     //$router->post('/users', 'UserController@store');
     //rutas para las categorias
-    $router->get('/', 'CategoryController@index');
-    $router->post('/', 'CategoryController@store');
-    $router->get('/{id}', 'CategoryController@show');
-    $router->put('/{id}', 'CategoryController@update');
-    $router->delete('/{id}', 'CategoryController@destroy');
 
     //rutas de los items
     $router->post('/{id}/items','ItemsController@store');
