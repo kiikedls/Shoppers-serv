@@ -13,8 +13,22 @@ class CategoryController extends Controller
 {
     public function index(Request $req)
     {
-        //return Category::all();
-        return $req->User()->categories()->latest()->paginate();
+        return Category::all();
+        /*$categories=$req->User()->categories()->latest()->paginate();
+        if (count($categories)) {
+            return response()->json(
+                $data = [
+                    $categories
+                ],
+                $status = 200
+            );
+        }
+        return response()->json(
+            $data = [
+                'message'=>'este usuario no cuenta con lista de compras actualmente'
+            ],
+            $status = 200
+        );*/
     }
 
     public function show(Request $req, $id)

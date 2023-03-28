@@ -28,31 +28,52 @@ $router->group(['prefix'=>'api'], function() use ($router){
     $router->post('/register','AuthController@register');
 
     //grupo de rutas para probar que funciona la autorizacion de passport
-    $router->group(['middleware'=>'auth'],function () use ($router)
+    /*$router->group(['middleware'=>'auth'],function () use ($router)
     {
         //ruta para cerrar sesion
         $router->post('/logout','AuthController@logout');
         //listado de todos los usuarios
         $router->get('/users', 'UserController@index');
 
+        //rutas para las categorias
         $router->get('/', 'CategoryController@index');
         $router->get('/{id}', 'CategoryController@show');
         $router->post('/', 'CategoryController@store');
         $router->put('/{id}', 'CategoryController@update');
         $router->delete('/{id}', 'CategoryController@destroy');
 
-    });
+        //rutas de los items
+        $router->post('/{categoryId}/items','ItemController@store');
+        $router->get('/{categoryId}/items','ItemController@index');
+        $router->get('/{categoryId}/items/{itemId}','ItemController@show');
+        $router->put('/{categoryId}/items/{itemId}','ItemController@update');
+        $router->delete('/{categoryId}/items/{itemId}','ItemController@destroy');
+
+    });*/
+
+    //ruta para cerrar sesion
+    $router->post('/logout','AuthController@logout');
+    //listado de todos los usuarios
+    $router->get('/users', 'UserController@index');
+
+    //rutas para las categorias
+    $router->get('/', 'CategoryController@index');
+    $router->get('/{id}', 'CategoryController@show');
+    $router->post('/', 'CategoryController@store');
+    $router->put('/{id}', 'CategoryController@update');
+    $router->delete('/{id}', 'CategoryController@destroy');
+
+    //rutas de los items
+    $router->post('/{categoryId}/items','ItemController@store');
+    $router->get('/{categoryId}/items','ItemController@index');
+    $router->get('/{categoryId}/items/{itemId}','ItemController@show');
+    $router->put('/{categoryId}/items/{itemId}','ItemController@update');
+    $router->delete('/{categoryId}/items/{itemId}','ItemController@destroy');
 
 
 
 
     //$router->post('/users', 'UserController@store');
-    //rutas para las categorias
 
-    //rutas de los items
-    $router->post('/{id}/items','ItemsController@store');
-    $router->get('/{id}/items','ItemsController@index');
-    $router->get('/{id}/items/{item_id}','ItemsController@show');
-    $router->put('/{id}/items/{item_id}','ItemsController@update');
-    $router->delete('/{id}/items/{item_id}','ItemsController@destroy');
+
 });

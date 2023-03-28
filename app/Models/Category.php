@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-    protected $fillable=array('user_id','name');
+    protected $fillable=['name'];
+
     public function items()
     {
         return $this->hasMany(Item::class);

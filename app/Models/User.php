@@ -54,8 +54,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     }
 
     public function addItem(Item $item,$categoryId){
-        return $this->categories()->find($categoryId)
-        ->items()->create([
+        return $this->categories()->find($categoryId)->items()->create([
             "name"=>$item->name,
             "description"=>$item->description,
             "user_id"=>$this->id
